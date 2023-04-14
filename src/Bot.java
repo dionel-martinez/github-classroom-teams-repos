@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 /**
  * @author dionel.martinez@upr.edu
@@ -32,8 +33,9 @@ public class Bot {
 
 		// System Property for Chrome Driver
 		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
-
-		driver = new ChromeDriver();
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--remote-allow-origins=*");
+		driver = new ChromeDriver(options);
 		// driver.manage().window().maximize();
 
 		// Set your login info as System Env Vars (github_user, github_pwd) or modify
@@ -87,7 +89,7 @@ public class Bot {
 			if (dup)
 				break;
 			nextButton = driver.findElement(By.className("next_page"));
-
+			
 		}
 
 		File data = new File("data/repos.csv");
